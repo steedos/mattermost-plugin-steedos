@@ -1,6 +1,6 @@
 # Mattermost Steedos Plugin
 
-此包用于获取steedos应用的authToken.
+此插件用于获取steedos应用的authToken, 便于Mattermost访问steedos应用接口
 
 ## 使用说明
 克隆代码:
