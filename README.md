@@ -22,11 +22,12 @@ make dist
 dist/com.mattermost.steedos-0.1.0.tar.gz
 ```
 
+## 使用说明
 访问你的Mattermost服务，新建一个[oauth2](https://docs.mattermost.com/developer/oauth-2-0-applications.html)应用，先[启用服务](https://docs.mattermost.com/administration/config-settings.html#enable-oauth-2-0-service-provider)才能新建
 
 上传插件可以访问[系统控制台](https://docs.mattermost.com/developer/oauth-2-0-applications.html)
 
-将生成的插件文件上传后，需要设置相应的参数，参数设置好之后启用插件：
+将插件文件上传后，需要设置相应的参数，参数设置好之后启用插件：
 ```
 - URL (steedos应用的服务地址)
 - API URL (steedos应用的api地址)
