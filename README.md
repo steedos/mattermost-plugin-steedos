@@ -41,8 +41,8 @@ dist/com.mattermost.steedos-0.1.0.tar.gz
 `GET /plugins/com.mattermost.steedos/startup`，用于获取steedos authToken等信息:
 ```json
 {
-    "authToken": "", // steedos应用的认证authToken，在调用steedos应用接口时传入
-    "url": "", // steedos应用的api地址
-    "userId": "" // steedos用户id
+    "authToken": "", (steedos应用的认证authToken，在调用steedos应用接口时传入)
+    "url": "", (steedos应用的api地址)
+    "userId": "" (steedos用户id)
 }
 ```
