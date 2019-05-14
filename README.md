@@ -2,7 +2,11 @@
 
 此插件用于获取steedos应用的authToken, 便于Mattermost访问steedos应用接口
 
-## 使用说明
+## 安装
+转到此Github存储库的[发行版页面](https://github.com/steedos/mattermost-plugin-steedos/releases)，下载最新版本。 您可以在Mattermost[系统控制台](https://docs.mattermost.com/developer/oauth-2-0-applications.html)中上传此文件以安装插件。
+
+
+## 开发说明
 克隆代码:
 ```
 git clone --depth 1 https://github.com/steedos/mattermost-plugin-steedos
