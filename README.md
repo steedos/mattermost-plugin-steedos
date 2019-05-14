@@ -7,7 +7,7 @@
 
 
 ## 开发说明
-克隆代码:
+克隆代码到你的`$GOPATH`下:
 ```
 git clone --depth 1 https://github.com/steedos/mattermost-plugin-steedos
 ```
