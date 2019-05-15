@@ -1,5 +1,5 @@
 {
-    "id": "com.mattermost.steedos",
+    "id": "steedos",
     "name": "Steedos",
     "description": "This plugin serves as a starting point for writing a Mattermost plugin.",
     "version": "0.1.0",

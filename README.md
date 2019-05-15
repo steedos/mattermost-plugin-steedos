@@ -19,7 +19,7 @@ make dist
 
 这将生成一个插件文件（支持多种操作系统），以便上传到您的Mattermost服务器(如：`http://localhost:8065`):
 ```
-dist/com.mattermost.steedos-0.1.0.tar.gz
+dist/steedos-0.1.0.tar.gz
 ```
 
 ## 使用说明
@@ -43,7 +43,7 @@ dist/com.mattermost.steedos-0.1.0.tar.gz
 ```
 
 ## 开放接口
-`GET /plugins/com.mattermost.steedos/startup`，用于获取steedos authToken等信息，返回JSON对象:
+`GET /plugins/steedos/startup`，用于获取steedos authToken等信息，返回JSON对象:
 ```
 {
     "authToken": "", (steedos应用的认证authToken，在调用steedos应用接口时传入)

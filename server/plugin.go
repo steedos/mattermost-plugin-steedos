@@ -80,7 +80,7 @@ func (p *Plugin) handleStartup(c *plugin.Context, w http.ResponseWriter, r *http
 	body := Body{}
 
 	var ret UserInfo
-	erro := p.steedosClient.request("GET", fmt.Sprintf("/api/jwt/sso"), body, &ret, user.Username, c.SessionId)
+	erro := p.steedosClient.request("GET", fmt.Sprintf("/jwt/sso"), body, &ret, user.Username, c.SessionId)
 	if erro != nil {
 		http.Error(w, erro.Error(), erro.StatusCode)
 		return

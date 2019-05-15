@@ -4,6 +4,6 @@ var manifest = struct {
 	Id      string
 	Version string
 }{
-	Id:      "com.mattermost.steedos",
+	Id:      "steedos",
 	Version: "0.1.0",
 }
