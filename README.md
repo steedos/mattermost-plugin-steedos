@@ -51,3 +51,23 @@ dist/steedos-0.1.0.tar.gz
     "userId": "" (steedos用户id)
 }
 ```
+## mattermost客户端调用`/plugins/steedos/startup`接口示例:
+```js
+    doGet = async (url, headers = {}) => {
+        headers['X-Requested-With'] = 'XMLHttpRequest';
+
+        try {
+            const response = await request.
+                get(url).
+                set(headers).
+                type('application/json').
+                accept('application/json');
+
+            return response.body;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    let data = await doGet(`http://mattermostUrl/plugins/steedos/startup`);
+```
