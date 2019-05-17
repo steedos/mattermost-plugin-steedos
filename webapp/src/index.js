@@ -12,6 +12,8 @@ import React from 'react';
 
 
 // Courtesy of https://feathericons.com/
+import {startUp} from './actions';
+
 const Icon = () => <i className='icon fa fa-plug'/>;
 
 export default class Plugin {
@@ -21,11 +23,11 @@ export default class Plugin {
             <Icon />,
             // action - a function called when the button is clicked, passed the channel and channel member as arguments
             // null,
-            () => {
-                alert("Hello World!");
+            (channel) => {
+                startUp()();
             },
             // dropdown_text - string or JSX element shown for the dropdown button description
-            "Hello World",
+            "start up!",
         );
     }
 }
