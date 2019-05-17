@@ -51,8 +51,9 @@ dist/steedos-0.1.0.tar.gz
     "userId": "" (steedos用户id)
 }
 ```
-## mattermost客户端调用`/plugins/steedos/startup`接口示例:
+## mattermost网页端调用`/plugins/steedos/startup`接口示例:
 ```js
+    import request from 'superagent';
     doGet = async (url, headers = {}) => {
         headers['X-Requested-With'] = 'XMLHttpRequest';
 
