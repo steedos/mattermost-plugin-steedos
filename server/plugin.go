@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"sync"
 
+	"github.com/mattermost/mattermost-server/mlog"
 	"github.com/mattermost/mattermost-server/model"
 	"github.com/mattermost/mattermost-server/plugin"
 )
@@ -21,6 +22,8 @@ type Plugin struct {
 	// configuration is the active plugin configuration. Consult getConfiguration and
 	// setConfiguration for usage.
 	configuration *configuration
+
+	BotUserID string
 }
 
 type UserInfo struct {
@@ -39,6 +42,15 @@ func (p *Plugin) OnActivate() error {
 
 	p.steedosClient = NewClient(config.APIURL, config.APIKey, config.APISecret)
 
+	p.API.RegisterCommand(getCommand())
+	user, err := p.API.GetUserByUsername(config.Username)
+	if err != nil {
+		mlog.Error(err.Error())
+		return fmt.Errorf("Unable to find user with configured username: %v", config.Username)
+	}
+
+	p.BotUserID = user.Id
+
 	return nil
 }
 
@@ -49,9 +61,13 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	switch path := r.URL.Path; path {
 	case "/startup":
 		p.handleStartup(c, w, r)
+	case "/workflow/webhook":
+		p.handleWebhook(w, r)
 	default:
 		http.NotFound(w, r)
 	}

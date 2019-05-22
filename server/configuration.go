@@ -27,6 +27,7 @@ type configuration struct {
 	APIKey        string
 	APISecret     string
 	WebhookSecret string
+	Username      string
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if
@@ -48,6 +49,10 @@ func (c *configuration) IsValid() error {
 
 	if len(c.WebhookSecret) == 0 {
 		return fmt.Errorf("WebhookSecret is not configured.")
+	}
+
+	if len(c.Username) == 0 {
+		return fmt.Errorf("Username is not configured.")
 	}
 
 	return nil
