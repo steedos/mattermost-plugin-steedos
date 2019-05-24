@@ -1,6 +1,8 @@
 import {id as pluginId} from './manifest';
 import React from 'react';
 
+import PostTypeWorkflowWebhook from './components/workflow';
+
 // export default class Plugin {
 //     // eslint-disable-next-line no-unused-vars
 //     initialize(registry, store) {
@@ -12,9 +14,9 @@ import React from 'react';
 
 
 // Courtesy of https://feathericons.com/
-import {startUp} from './actions';
+// import {startUp} from './actions';
 
-const Icon = () => <i className='icon fa fa-plug'/>;
+// const Icon = () => <i className='icon fa fa-plug'/>;
 
 export default class Plugin {
     initialize(registry, store) {
@@ -29,6 +31,7 @@ export default class Plugin {
         //     // dropdown_text - string or JSX element shown for the dropdown button description
         //     "start up!",
         // );
+        registry.registerPostTypeComponent('custom_workflow_webhook', PostTypeWorkflowWebhook);
     }
 }
 

@@ -21,10 +21,11 @@ type WorkflowWebhook struct {
 
 // Instance 申请单
 type Instance struct {
-	ID          string `json:"_id"`
-	Name        string `json:"name"`
-	Space       string `json:"space"`
-	RedirectURL string `json:"redirectUrl"`
+	ID            string `json:"_id"`
+	Name          string `json:"name"`
+	Space         string `json:"space"`
+	RedirectURL   string `json:"redirectUrl"`
+	ApplicantName string `json:"applicant_name"`
 }
 
 // Approve 历史步骤
@@ -71,16 +72,15 @@ func (p *Plugin) handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 		post := &model.Post{
 			UserId: p.BotUserID,
-			Type:   "custom_webhook",
+			Type:   "custom_workflow_webhook",
 			Props: map[string]interface{}{
-				"from_webhook": "true",
+				"from_webhook":   "true",
+				"action":         webhook.Action,
+				"name":           webhook.Instance.Name,
+				"redirectUrl":    webhook.Instance.RedirectURL,
+				"applicant_name": webhook.Instance.ApplicantName,
 			},
 		}
-
-		fmt.Print("webhook.http.Request-URL: ", r.URL)
-		fmt.Print("webhook.http.Request-RequestURI: ", r.RequestURI)
-		fmt.Print("webhook.http.Request-Host: ", r.Host)
-		fmt.Print("webhook.http.Request-Proto: ", r.Proto)
 
 		message := fmt.Sprintf("请确认: [%s](%s)", webhook.Instance.Name, webhook.Instance.RedirectURL)
 		if "engine_submit" == webhook.Action {
