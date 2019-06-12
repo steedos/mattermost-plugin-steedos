@@ -82,7 +82,7 @@ func (p *Plugin) handleWebhook(w http.ResponseWriter, r *http.Request) {
 			},
 		}
 
-		message = fmt.Sprintf("你有新的待办文件: [%s](%s)", webhook.Instance.Name, webhook.Instance.RedirectURL)
+		message := fmt.Sprintf("你有新的待办文件: [%s](%s), 提交人: %s", webhook.Instance.Name, webhook.Instance.RedirectURL, webhook.Instance.ApplicantName)
 
 		post.Message = message
 		post.ChannelId = channel.Id
