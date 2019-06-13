@@ -11,22 +11,24 @@ const (
 )
 
 type Subscription struct {
-	ChannelID string
-	CreatorID string
+	ChannelID  string
+	CreatorID  string
+	ObjectName string
 }
 
 type Subscriptions struct {
 	Repositories map[string][]*Subscription
 }
 
-func (p *Plugin) Subscribe(ctx context.Context, userId string, channelID string) error {
+func (p *Plugin) Subscribe(ctx context.Context, userId string, channelID string, objectName string) error {
 
 	sub := &Subscription{
-		ChannelID: channelID,
-		CreatorID: userId,
+		ChannelID:  channelID,
+		CreatorID:  userId,
+		ObjectName: objectName,
 	}
 
-	if err := p.AddSubscription(channelID, sub); err != nil {
+	if err := p.AddSubscription(objectName, sub); err != nil {
 		return err
 	}
 
@@ -110,6 +112,25 @@ func (p *Plugin) StoreSubscriptions(s *Subscriptions) error {
 	}
 	p.API.KVSet(SUBSCRIPTIONS_KEY, b)
 	return nil
+}
+
+func (p *Plugin) GetSubscribedChannelsForObjectName(objectName string) []*Subscription {
+	subs, err := p.GetSubscriptions()
+	if err != nil {
+		return nil
+	}
+
+	// Add subcriptions for the specific objectName
+	subsForRepo := []*Subscription{}
+	if subs.Repositories[objectName] != nil {
+		subsForRepo = append(subsForRepo, subs.Repositories[objectName]...)
+	}
+
+	if len(subsForRepo) == 0 {
+		return nil
+	}
+
+	return subsForRepo
 }
 
 func (p *Plugin) Unsubscribe(channelID string) error {

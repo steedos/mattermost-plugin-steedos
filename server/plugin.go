@@ -68,6 +68,8 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 		p.handleStartup(c, w, r)
 	case "/workflow/webhook":
 		p.handleWebhook(w, r)
+	case "/creator/object_webhook":
+		p.handleObjectWebhook(w, r)
 	default:
 		http.NotFound(w, r)
 	}

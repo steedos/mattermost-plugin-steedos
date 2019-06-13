@@ -1,7 +1,7 @@
 import {id as pluginId} from './manifest';
-import React from 'react';
 
 import PostTypeWorkflowWebhook from './components/workflow';
+import CreatorObjectWebhook from './components/creator_object';
 
 // export default class Plugin {
 //     // eslint-disable-next-line no-unused-vars
@@ -32,6 +32,7 @@ export default class Plugin {
         //     "start up!",
         // );
         registry.registerPostTypeComponent('custom_workflow_webhook', PostTypeWorkflowWebhook);
+        registry.registerPostTypeComponent('custom_object_webhook', CreatorObjectWebhook);
     }
 }
 
