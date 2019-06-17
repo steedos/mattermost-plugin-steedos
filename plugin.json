@@ -2,7 +2,7 @@
     "id": "steedos",
     "name": "Steedos",
     "description": "This plugin serves as a starting point for writing a Mattermost plugin.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "server": {
         "executables": {
             "linux-amd64": "server/dist/plugin-linux-amd64",
