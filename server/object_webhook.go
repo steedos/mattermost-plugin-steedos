@@ -36,13 +36,10 @@ func (p *Plugin) handleObjectWebhook(w http.ResponseWriter, r *http.Request) {
 		mlog.Error(err.Error())
 		return
 	}
-	fmt.Print("webhook.action》》》》》》》》》》: ", webhook.Action)
-	fmt.Print("webhook》》》》》》》》》》: ", webhook)
 
 	subs := p.GetSubscribedChannelsForObjectName(webhook.ObjectName)
 
 	if subs == nil || len(subs) == 0 {
-		fmt.Print("111111111111111111111111: ")
 		return
 	}
 
@@ -54,13 +51,10 @@ func (p *Plugin) handleObjectWebhook(w http.ResponseWriter, r *http.Request) {
 	} else if "delete" == webhook.Action {
 		message = fmt.Sprintf("%s删除了%s: [%s](%s)", webhook.ActionUserInfo.Name, webhook.ObjectDisplayName, webhook.Data[webhook.NameFieldKey], webhook.RedirectURL)
 	}
-	fmt.Print("222222222222222222222222222: ")
 
 	actionUserInfo, _ := json.Marshal(webhook.ActionUserInfo)
 	var actionUserInfoMapResult map[string]interface{}
 	json.Unmarshal(actionUserInfo, &actionUserInfoMapResult)
-
-	fmt.Print("_id_id_id_id_id_id_id_id_id: ", webhook.Data["_id"])
 
 	dataMap := map[string]interface{}{
 		"_id": webhook.Data["_id"],
@@ -86,8 +80,6 @@ func (p *Plugin) handleObjectWebhook(w http.ResponseWriter, r *http.Request) {
 	post.Message = message
 
 	for _, sub := range subs {
-		fmt.Print("4444444444444444444444444444: ", sub.ChannelID)
-
 		post.ChannelId = sub.ChannelID
 		if _, err := p.API.CreatePost(post); err != nil {
 			mlog.Error(err.Error())
