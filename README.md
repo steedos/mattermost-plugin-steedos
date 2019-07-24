@@ -1,6 +1,9 @@
 # Mattermost Steedos Plugin
 
-此插件用于获取steedos应用的authToken, 便于Mattermost访问steedos应用接口
+此插件功能：
+- 提供`GET /plugins/steedos/startup`接口，获取steedos应用的authToken, 便于Mattermost访问steedos应用接口
+- 提供`POST /plugins/steedos/workflow/webhook`接口，用于将审批王审批信息推送至华信，便于用户及时获取审批动态
+- 提供`POST /plugins/steedos/creator/object_webhook`接口，用于将Creator系统中对象的增加修改删除信息推送至华信，便于用户及时获取对象动态
 
 ## 安装
 转到此Github存储库的[发行版页面](https://github.com/steedos/mattermost-plugin-steedos/releases)，下载最新版本。 您可以在Mattermost[系统控制台](https://docs.mattermost.com/developer/oauth-2-0-applications.html)中上传此文件以安装插件。
@@ -51,6 +54,11 @@ dist/steedos-0.1.0.tar.gz
     "userId": "" (steedos用户id)
 }
 ```
+`POST /plugins/steedos/workflow/webhook`接口，用于将审批王审批信息推送至华信，便于用户及时获取审批动态，使用此功能准备工作如下：
+- 在华炎审批系统(如`https://cn.steedos.com`)中配置webhooks（需要工作区管理员身份），URL参数可配置为华信系统接受地址(如`https://messenger.steedos.cn/plugins/steedos/workflow/webhook`，即本接口)
+
+`POST /plugins/steedos/creator/object_webhook`接口，用于将Creator系统中对象的增加修改删除信息推送至华信，便于用户及时获取对象动态，使用此功能准备工作如下：
+- 在creator系统（如[华炎合同管理系统](https://github.com/steedos/steedos-contracts-app)）中配置object_webhooks（需要工作区管理员身份），URL参数可配置为华信系统接受地址(如`https://messenger.steedos.cn/plugins/steedos/creator/object_webhook`，即本接口)
 ## mattermost网页端调用`/plugins/steedos/startup`接口示例:
 ```js
     import request from 'superagent';
